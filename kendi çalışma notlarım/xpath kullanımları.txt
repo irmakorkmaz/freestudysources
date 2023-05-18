@@ -1,0 +1,150 @@
+
+guru99 demo site sınırlı süre id-şifre
+mngr486411
+Apusyse
+
+
+
+
+
+
+
+
+1-TEMEL XPATH ÖRNEĞİ (RELATİVE XPATH ABSOLUTE DEĞİL)
+
+//a[@href=’http://demo.guru99.com/’]
+s classında attribute u href olan kısımda http://demo.guru99.com yazısını bulur.
+
+
+
+2-CONTAINS
+
+//*[contains(text(),'aranan metin')]
+tüm web sayfasında aranan metini içeren web elementi bulur
+
+
+
+
+     public static String secilebilirbedenler="//span[contains(@class,'m-variation__item')and not(contains(@class,'-disabled'))]";
+
+
+
+3-AND VE OR
+
+OR
+OR ifadesinde, 1. Koşulun veya 2. koşulun doğru olması durumu için 2 koşul kullanılır.
+Herhangi bir koşulun doğru veya her iki koşulun doğru olması durumunda da geçerlidir. 
+Öğeyi bulmak için herhangi bir koşulun doğru olması gerektiği anlamına gelir.
+Xpath=//*[@type=’submit’ or @name=’btnReset’]
+
+AND
+AND ifadesinde, iki koşul kullanılır, öğeyi bulmak için her iki koşul da doğru olmalıdır.
+Herhangi bir koşul yanlışsa öğe bulunamaz.
+
+Xpath=//input[@type=’submit’ and @name=’btnLogin’]
+
+
+4- STARTS WITH
+
+Starts-with fonksiyonu yenilenen veya web sayfasındaki herhangi bir işlemde öznitelik değeri değişen öğeyi bulur.
+ Bu ifadede, niteliği dinamik olarak değişen öğeyi bulmak için özelliğin başlangıç metniyle eşleşir. 
+Tabi ki nitelik değeri statik olan öğeyi de bulabilirsiniz.
+
+
+Örneğin: Belirli bir öğenin kimliğinin dinamik olarak şu şekilde değiştiğini varsayalım:
+
+Id=” message12″
+Id=” message345″
+Id=” message8769″
+Gibi… ancak ilk metin (message) aynı. Bu durumda Start-with ifadesini kullanırız.
+
+Aşağıdaki örnekte XPath, ID’si “message” ile başlayan öğeleri bulur.
+
+Xpath=//label[starts-with(@id,’message’)]
+
+
+5-TEXT()
+
+Xpath=//td[text()=’UserID’]
+Text() ifadesinde, metin işleviyle, tam olarak eşleşen metin öğesini aşağıda gösterildiği gibi buluruz
+
+
+
+
+6-XPATH AXES YÖNTEMLERİ 
+NORMAL XPATH YONTEMLERİYLE BULMANIN MÜMKÜN OLMADIĞI DİNAMİK
+OGELERİ BULMAK İÇİN KULLANILIR.
+
+A)FOLLOWING
+B)ANCESTOR
+C)CHILD
+D)PRECEDING
+E)FOLLOWING SIBLING
+F)PARENT
+G)SELF
+H)DESCENDANT
+
+
+
+a-following
+//*[@type='text']//following::input
+
+attibute u type olan ve yazı biçiminde olan input sınıfındaki elemanları bulur.
+//*[@type='text']//following::input[2]
+yazarak da 2. elementi çekebiliriz.
+
+
+
+b-ancestor
+Ancestor ekseni, aşağıdaki ekranda gösterildiği gibi
+geçerli node’un tüm ata elemanlarını  (grandparent, parent, gibi) seçer.
+Xpath=//*[text()=’Enterprise Testing’]//ancestor::div 
+
+
+
+c-child
+Aşağıdaki ekranda gösterildiği gibi geçerli düğümün (Java) tüm alt öğelerini seçer.
+
+
+Xpath=//*[@id=’java_technologies’]/child::li 
+
+d-preceding
+Aşağıdaki ekranda gösterildiği gibi geçerli node’dan önce gelen tüm node’lar seçilir.
+
+
+Xpath=//*[@type=’submit’]//preceding::input
+
+
+e-following sibling
+
+Context node’un aşağıdaki Child’larının seçilmesi. Child’lar aşağıdaki ekranda gösterilen geçerli node ile aynı seviyededir.
+ Geçerli node’dan sonra öğeyi bulur.
+
+ 
+
+xpath=//*[@type='submit']//following-sibling::input
+
+f-PARENT
+Geçerli node’un üst öğesini aşağıdaki ekranda gösterildiği gibi seçer.
+
+
+Xpath=//*[@id=’rt-feature’]//parent::div
+
+
+
+
+g) Self:
+Geçerli node’u seçer veya “self”, aşağıdaki ekranda gösterildiği gibi node’un kendisini gösterdiği anlamına gelir.
+Xpath =//*[@type=’password’]//self::input
+
+
+h) Descendant:(TORUN)
+
+Aşağıdaki node’da gösterildiği gibi geçerli node’ un Descendant’ını seçer.
+
+
+Aşağıdaki ifadede, node altında (alt node, child node vb.) Anlamına gelen tüm öğe child’ları geçerli öğeye 
+(‘child node , grandchild node, vb.) tanımlar.
+
+
+Xpath=//*[@id=’rt-feature’]//descendant::a

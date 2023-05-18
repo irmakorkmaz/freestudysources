@@ -1,0 +1,157 @@
+{\rtf1\ansi\ansicpg1254\deff0\nouicompat{\fonttbl{\f0\fnil\fcharset162 Calibri;}{\f1\fnil\fcharset0 Calibri;}{\f2\fnil\fcharset238 Calibri;}{\f3\fmodern JetBrains Mono;}{\f4\fnil Calibri;}{\f5\fnil\fcharset1 Segoe UI Symbol;}}
+{\colortbl ;\red255\green0\blue0;\red0\green0\blue255;\red155\green0\blue211;\red0\green77\blue187;\red187\green181\blue41;\red204\green120\blue50;\red255\green198\blue109;\red169\green183\blue198;\red152\green118\blue170;\red106\green135\blue89;}
+{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\f0\fs22\lang1055 ilk \f1\lang1033\'f6\f0\lang1055 nce a\f1\lang1033\'e7\f0\lang1055  maven projeni\par
+ba\f2\u287?\u305?\f0 ml\f2\u305?\f0 l\f2\u305?\f0 klar\f2\u305?\f0 n\f2\u305?\f0  <dependicies> tag\f2\u305?\f0  i\f1\lang1033\'e7\f0\lang1055 erisinde tan\f2\u305?\f0 mla\par
+bonigarcia webdriver manager,\par
+selenium,\par
+test ng veya junit dependicilerini.\par
+sonras\f2\u305?\f0 nda a\f1\lang1033\'e7\f0\lang1055  prpjeyi\par
+test k\f2\u305?\f0 sm\f2\u305?\f0 na 3 adet package ekle\par
+base,methods ve locators olarak.\par
+base e 2 class ekle; basetest ve test senaryolar\f2\u305?\f0  olarak\par
+methodsa methods claass\f2\u305?\f0 ,\par
+locators a locators class\f2\u305?\f0 .\par
+\b base test k\f2\u305?\f0 sm\f2\u305?\f0 na gelip;\par
+\b0 public void Webdriver driver tan\f2\u305?\f0 mla en ba\f2\'ba\f0 a,\par
+public class BaseTest\{\par
+public static WebDriver driver;\par
+public String tarayici="Chrome";\par
+@before\par
+public void before()\{\par
+switch(tarayici)\{\par
+case "Chrome":\par
+sout\par
+WebDriverManager.chromedriver().setup();\par
+driver=new ChromeDriver;\par
+break;\par
+case "edge":\par
+ssout\par
+WebDriverManager.edgedriver().setup();\par
+driver=new EdgeDriver;\par
+break;\par
+default:\par
+sout taryici buunamad\f2\u305?\f0  \}\par
+sout se\f1\lang1033\'e7\f0\lang1055 ilen tarayici aya\f2\u287?\f0 a kald\f2\u305?\f0 r\f2\u305?\f0 ld\f2\u305?\f0\par
+driver.manage().timeouts().implicitlyWait(10);\par
+driver.manage().window().maximize();\par
+\}\par
+@after\par
+public void after()\{\par
+friver.close();\par
+\}\par
+sonras\f2\u305?\f0 nda \par
+@before ve @after testleri ekle \par
+before k\f2\u305?\f0 sm\f2\u305?\f0 na en ba\f2\'ba\f0 ta driverin yapmas\f2\u305?\f0  gerekenleri yaz\f2\u305?\f0 r.\par
+tan\f2\u305?\f0 mlamalar\f2\u305?\f0 n\f2\u305?\f0  yap, webdrivermanageri kur hangisini istiyorsan. \par
+Webdrivermanager.chromeDriver().setup();\par
+driver= new ChromeDriver();\par
+\cf1 TEST SENERYOLARI SINIFI  BASE TESTE EXTENDS ED\f2\u304?\f0 L\f2\u304?\f0 R\par
+HEM METHODLAR HEM LOCATORSLAR NEWLEN\f2\u304?\f0 r\par
+
+\pard\box\brdrdash\brdrw0 \sa200\sl276\slmult1\f3\fs20 Methods methods1 = new Methods();\par
+\f0 @Test\par
+public void test1()\{\par
+\f3 methods1.siteyegitme("{\cf0{\field{\*\fldinst{HYPERLINK https://www.amazon.com }}{\fldrslt{https://www.amazon.com\ul0\cf0}}}}\f3\fs20 ");\line methods1.yazdirma1(lokasyon.aramakutusu, "CEKET");\line methods1.tiklama1(lokasyon.aramabutonu);\par
+
+\pard\sa200\sl276\slmult1\f0\fs22\par
+\par
+\par
+\cf3\b\fs32 METHODS SINIFI BASE TESTE EXTENDS ED\f2\u304?\f0 L\f2\u304?\f0 R.\fs22\par
+\cf4 public class Methodlar extends BaseTest\{\cf3\par
+public void siteyegitme(String url)\{\par
+driver.get(url);\par
+sout siteye gidildi \}\par
+
+\pard\box\brdrdash\brdrw0 \sa200\sl276\slmult1\b0\f3\fs20 public WebElement elemanBulmaMetodu (String locator)\{\line     WebElement element=null;\line     try\{\line         element= \i driver\i0 .findElement(By.\i xpath\i0 (locator));\line         WebDriverWait wait = new WebDriverWait(\i driver\i0 ,15);\line         wait.until(ExpectedConditions.\i visibilityOf\i0 (element));\line         System.\i out\i0 .println("element bulundu"+locator);\line\line     \} catch (Exception e) \{\line         System.\i out\i0 .println(locator+" bulunamadi *********************************************************");\line     \}\par
+
+\pard\sa200\sl276\slmult1\b\f0\fs22\par
+\cf4 public void eleementbulma(String locator)\{\par
+WebElement element=null;\par
+try\{\par
+element=driver.findElement(By.xpath(locator));\par
+WebDriverWait wait=new WebDriverWait;\par
+wait.until(ExpectedConditions.visibilityOf(element));\par
+sout element bulunabildi\par
+\}\par
+catch(Exception e)\{\par
+sout element bulunamad\f2\u305?\f0  \}\par
+return element;\par
+\}\cf3\par
+public void yazdirma(String locator,String yazi)\{\par
+elementbulma(locator).clear();\par
+elementbylma(locator).sendKeys(yazi);\par
+sout istenen yaz\f2\u305?\f0  ya\f2\u305?\f0 zld\f2\u305?\f0\par
+\}\par
+\cf4 public void tiklama(String locator)\{\par
+driver.findElement(By.xpath(locator)).click();\par
+sout t\f2\u305?\f0 klama i\f2\'ba\f0 lemi ger\f1\lang1033\'e7\f0\lang1055 ekle\f2\'ba\f0 ti\par
+\cf3\}\par
+\}\b0\par
+VE GENEL METHODLAR YAZILIR.\par
+public void methodadi(de\f2\u287?\f0 i\f2\'ba\f0 ken)\{\par
+form\f1\lang1033\'fc\f0\lang1055 l\f1\lang1033\'fc\f0\lang1055 ;\par
+\b Try-Catch-Finally\b0\par
+Hata durumlar\f2\u305?n\u305? y\f1\lang1033\'f6netmek i\'e7in 2 y\'f6ntem vard\f2\u305?r.\par
+Try-catch bloklar\u305? ile hatay\u305? al\u305?naca\u287?\u305? tahmin edilen yerde kontrol alt\u305?na alabiliriz veya\par
+Hatay\u305? throws anahtar kelimesi ile \f1\'e7a\f2\u287?r\u305?ld\u305?\u287?\u305? bir \f1\'fcst noktaya f\f2\u305?rlatarak, \f1\'e7\'f6z\'fcm\'fcn orada yap\f2\u305?lmas\u305?n\u305? zorunlu hale getiririz.\par
+\f1\'c7al\f2\u305?\'bama zaman\u305?nda beklenmeyen bir hata olu\'bamas\u305? durumuna \b exception; \b0 bir istisnan\u305?n yarat\u305?l\u305?p program i\f1\'e7erisine at\f2\u305?lmas\u305? i\'balemine \b throwing\b0 ; olu\'baan bir istisnay\u305? yakalay\u305?p problemin \f1\'e7\'f6z\'fclmesi ad\f2\u305?na belirtilen ifadeleri \f1\'e7al\f2\u305?\'bat\u305?rma  i\'balemine \b catching\b0 ; istisna ile u\u287?ra\'baan kod blo\u287?una \b catch clause \b0 (catch block); istisnan\u305?n olu\'batu\u287?u noktada kontrol sa\u287?layan bir dizi metot \f1\'e7a\f2\u287?\u305?rma i\'balemine \b stack trace \b0 denir.\par
+\u304?stisnalar i\f1\'e7in izlenen kod, bir try blo\f2\u287?u i\f1\'e7erisinde tutulur. Bu blo\f2\u287?un anlam\u305? \lquote  bu kodu \f1\'e7al\f2\u305?\'bat\u305?r ve istisna olu\'baacak m\u305? g\f1\'f6r \lquote  \f2\'baeklinde ifade edilebilir. E\u287?er try blo\u287?u i\f1\'e7erisinde bir istisna meydana gelirse, bir istisna nesnesi yarat\f2\u305?l\u305?r ve kod i\f1\'e7erisine at\f2\u305?l\u305?r. Program\u305?m\u305?z bu istisnay\u305? catch ifadesi ile yakalayabilir ve i\'baleyebilir. Her catch blo\u287?u ne tipte bir istisnay\u305? yakalayabilece\u287?ini belirler ve i\f1\'e7erisinde o tipte istisnay\f2\u305? i\'balemek \f1\'fczere bir istisna i\f2\'baleyici bulunur. E\u287?er programc\u305? bir istisnay\u305? bizzat atmak istiyorsa  throw ifadesini kullanacakt\u305?r. Bir metottan at\u305?lan her istisna bir throws kal\u305?b\u305? ile belirtilir. Son olarak finally ile belirtilen blo\u287?un i\f1\'e7indeki kod, istisna olu\f2\'basun olu\'bamas\u305?n kesinlikle \f1\'e7al\f2\u305?\'bamas\u305? gereken koddur. Yani baz\u305? kodlar\u305?n her ne olursa olsun \f1\'e7al\f2\u305?\'bamas\u305? gerekiyorsa finally blo\u287?unun i\f1\'e7inde yer almal\f2\u305?d\u305?r.\f0\lang1055\par
+
+\pard\box\brdrdash\brdrw0 \sa200\sl276\slmult1\f3\fs20\par
+
+\pard\sa200\sl276\slmult1\cf4\f0\fs22 LOCATORS SINIFININ EXTENDS ED\f2\u304?\f0 LMES\f2\u304?\f0 NE GEREK YOKTUR\par
+\cf1\par
+
+\pard\box\brdrdash\brdrw0 \sa200\sl276\slmult1\cf4\f3\fs20 public class Locators \{\line    public String aramakutusu="//input[@id='twotabsearchtextbox']";\par
+
+\pard\sa200\sl276\slmult1\f0\fs22 TANIMLAMALALARIMIZI BURADA YAPARIZ K\f2\u304?\f0  \f2\u304?\f0 STED\f2\u304?\u286?\u304?\f0 M\f2\u304?\f0 Z ZAMAN DE\f2\u286?\u304?\'aa\f0 T\f2\u304?\f0 RMEK \f2\u304?\f0 STED\f2\u304?\u286?\u304?\f0 M\f2\u304?\f0 ZDE T\f1\lang1033\'dc\f0\lang1055 M HER YERDEN DE\f2\u286?\u304?\'aa\f0 T\f2\u304?\f0 RMEK YER\f2\u304?\f0 NE BURDAN DE\f2\u286?\u304?\'aa\f0 T\f2\u304?\f0 RMEK DAHA KOLAY OLSUN.\par
+\cf0\fs44 SELENIUM DERSLER\f2\u304?\f0\par
+\fs22 A\f1\lang1033\'e7\f2\lang1055\u305?\f0 k kaynakl\f2\u305?\f0  bir test otomasyon arac\f2\u305?\f0 d\f2\u305?\f0 r.her browser\f2\u305?\f0  otomaasyonla test edebilir.\par
+Bir\f1\lang1033\'e7\f0\lang1055 ok operating sistemi destekler.(windows,Macos,Linux)\par
+firefox,edge,safari,opera,chrome browserslar\f2\u305?\f0 nda kullan\f2\u305?\f0 labilir.\par
+bir\f1\lang1033\'e7\f0\lang1055 ok program dilini destekler(java,javascript,pyhton,c#,ruby)\par
+selenium grid birden fazla web sayfas\f2\u305?\f0 n\f2\u305?\f0  ayn\f2\u305?\f0  anda test edebilir.\par
+selenium fonksiyonel ve regresyon testlerini destekler.\par
+sleniumun \f1\lang1033\'fc\'e7\f0\lang1055  ana s\f1\lang1033\'fc\f0\lang1055 r\f1\lang1033\'fc\f0\lang1055 m\f1\lang1033\'fc\f0\lang1055 : selenium webdriver, selenium ide,selenium rc.\par
+selenium ide sadece firefox, rc; chrome explorer,firfox,opera, selenium webdr hepsini\par
+Ekran g\f1\lang1033\'f6r\'fcnt\'fcs\'fc almak i\'e7in TakeScreenshot\par
+getScreenshotAs() komutunu kullanarak ekran g\'f6r\'fcnt\'fcs\'fcn\'fc kayd\f0\lang1055 eder\par
+Junit, birim testi i\f1\lang1033\'e7in kullan\f2\u305?lan Java tabanl\u305? bir framework\f4\rquote\f2 d\f1\'fcr.\par
+\f0\lang1055 Implicit wait bir element i\f1\lang1033\'e7in devam eden ve tekrar eden aramalar yapar. Explicit wait ise tek seferlik bir \f2\'baeydir.\par
+captcha ve barcode Selenium kullan\u305?larak otomatikle\'batirilemeyen iki \'baeydir.\f0\lang1055\par
+\par
+\fs36 Peki POM bize neler sa\f2\u287?lar ?\fs22\par
+\par
+\f5\u-10179?\u-8903?\f1\lang1033 kod tekrar\f2\u305? yapmaktan al\u305?koyar.\par
+\par
+\b\f5\u-10179?\u-8903?\f4  \f1 Testlerimizin bulundu\f2\u287?u s\u305?n\u305?f ve elemanlar\u305?m\u305?z\u305?n oldu\u287?u s\u305?n\u305?f ayr\u305?d\u305?r. De\u287?i\'baiklik oldu\u287?u zaman, tekrar eden elemanlar\u305?m\u305?z olmad\u305?\u287?\u305? i\f1\'e7in kod y\'f6netimimiz kolayla\f2\'ba\u305?r ve de\u287?i\'baikliklere \f1\'e7ok daha kolay adapte olabiliriz.\b0\par
+\par
+\f5\u-10179?\u-8903?\f4  \f1 Metod isimlerimiz kullan\f2\u305?c\u305?n\u305?n aray\f1\'fczde yapt\f2\u305?\u287?\u305? i\'balem ile uyumlu olmal\u305?d\u305?r. B\f1\'f6ylece kodumuz daha anla\f2\'ba\u305?l\u305?r olur.\par
+\par
+\f5\u-10179?\u-8903?\f4  \f1 Kodu yeniden kullan\f2\u305?labilir hale getirir. \f1\'d6rne\f2\u287?in birden fazla test metodumuz ayn\u305? elemanlar\u305? kullan\u305?yorsa her birinde bu eleman\u305? tekrar tekrar elde etmemize gerek kalmaz, bir page class\f4\rquote\f2\u305?nda bu eleman\u305? tan\u305?mlad\u305?\u287?\u305?m\u305?z i\f1\'e7in, ileride bu eleman\f2\u305? kullanacak test metodlar\u305? i\f1\'e7inde kolayl\f2\u305?k sa\u287?lanm\u305?\'ba olur.\f0\lang1055\par
+\par
+\b MAVEN\par
+\b0 project object modele dayanan bir y\f1\lang1033\'f6\f0\lang1055 netim arac\f2\u305?\f0 d\f2\u305?\f0 r. Maven ba\f2\u287?\u305?\f0 ml\f2\u305?\f0 l\f2\u305?\f0 klar\f2\u305?\f0 m\f2\u305?\f0 z\f2\u305?\f0  y\f1\lang1033\'f6\f0\lang1055 netti\f2\u287?\f0 imiz otomasyon in\f2\'ba\f0 a arrac\f2\u305?\f0 d\f2\u305?\f0 r. Java programlama dili geli\f2\'ba\f0 tirirken \f1\lang1033\'e7\f0\lang1055 e\f2\'ba\f0 itli k\f1\lang1033\'fc\f0\lang1055 t\f1\lang1033\'fc\f0\lang1055 phaneler kullanabiliriz.Bunlar\f2\u305?\f0  di\f2\u287?\f0 er kullan\f2\u305?\f0 c\f2\u305?\f0 larla payla\f2\'ba\u305?\f0 rken onlar\f2\u305?\f0 n projemizi a\f1\lang1033\'e7\f0\lang1055 abilmesi i\f1\lang1033\'e7\f0\lang1055 in bu k\f1\lang1033\'fc\f0\lang1055 t\f1\lang1033\'fc\f0\lang1055 phanelere sahip olmas\f2\u305?\f0  ve indirilecek dosyalar\f2\u305?\f0 n g\f1\lang1033\'fc\f0\lang1055 ncel olmas\f2\u305?\f0  s\f1\lang1033\'fc\f0\lang1055 rekli takip edilmesi gerekir. Maven ile maven prpjesinde depenicies tagi alt\f2\u305?\f0 nda tan\f2\u305?\f0 mlad\f2\u305?\u287?\u305?\f0 m\f2\u305?\f0 z ba\f2\u287?\u305?\f0 ml\f2\u305?\f0 l\f2\u305?\f0 klar\f2\u305?\f0  tan\f2\u305?\f0 mlayarak ta\f2\'ba\u305?\f0 may\f2\u305?\f0  kolayla\f2\'ba\f0 t\f2\u305?\f0 rm\f2\u305?\'ba\f0  ve proje takibini kolayca yapm\f2\u305?\'ba\f0  oluruz.\b\par
+\b0\par
+\par
+\b JSON Nedir?\b0\par
+JSON (JavaScript Object Notation), basit veri yap\f2\u305?lar\u305?n\u305? temsil etmek i\f1\lang1033\'e7in tasarlanm\f2\u305?\'ba ba\u287?\u305?ms\u305?z bir veri de\u287?i\'baim format\u305?d\u305?r. Esas olarak iki sistem aras\u305?ndaki veri al\u305?\'baveri\'bai i\f1\'e7in kullan\f2\u305?l\u305?r. \f1\'d6rne\f2\u287?in JSON kullanarak sunucu ile web uygulamas\u305? aras\u305?nda veri aktarabilirsiniz.\f0\lang1055\par
+\f1\lang31\par
+\par
+
+\pard\box\brdrdash\brdrw0 \sa200\sl276\slmult1\cf5\f3\fs20 @Test\line     \cf6 public void \cf7 test1\cf8 () \{\line     \cf9 methods1\cf8 .siteyegitme(\cf10 "{\cf0{\field{\*\fldinst{HYPERLINK https://www.amazon.com }}{\fldrslt{https://www.amazon.com\ul0\cf0}}}}\f3\fs20 "\cf8 )\cf6 ;\line     \cf9 methods1\cf8 .yazdirma1(\cf9 lokasyon\cf8 .\cf9 aramakutusu\cf6 , \cf10 "CEKET"\cf8 )\cf6 ;\line     \cf9 methods1\cf8 .tiklama1(\cf9 lokasyon\cf8 .\cf9 aramabutonu\cf8 )\cf6 ;\line     \cf9 methods1\cf8 .textdogrulugu(\cf9 lokasyon\cf8 .\cf9 urunismi\cf6 , \cf10 "CEKET"\cf8 )\cf6 ;\line     \cf9 methods1\cf8 .tiklama1(\cf9 lokasyon\cf8 .\cf9 urunismi\cf8 )\cf6 ;\line     \cf9 methods1\cf8 .yazdirma1(\cf9 lokasyon\cf8 .\cf9 aramakutusu\cf6 , \cf10 "tshirt"\cf8 )\cf6 ;\line     \cf9 methods1\cf8 .tiklama1(\cf9 lokasyon\cf8 .\cf9 aramabutonu\cf8 )\cf6 ;\line\par
+
+\pard\sa200\sl276\slmult1\cf0\f1\fs22\par
+//span[contains(@class,"m-variation__item")]\par
+
+\pard\box\brdrdash\brdrw0 \sa200\sl276\slmult1\cf6\f3\fs20\par
+
+\pard\sa200\sl276\slmult1\cf0\f1\fs22\par
+(//div[@class='ok-spcrlclb-img']/span[contains(text(),"Temass\f2\u305?z Sat\u305?\'ba")])[3]\par
+\par
+\par
+\par
+//div/p[text()\f0\lang1055 ,"\f2\u304?\f1\lang1033\'e7i\f2\'baleri Bakanl\u305?\u287?\u305? ve AFAD i\'ba birli\u287?iyle Evim Yuvan Olsun kampanyas\u305?n\u305? ba\'balatt\u305?k.\f0\lang1055 "\f2\lang31 ]\f1\par
+}
+ 

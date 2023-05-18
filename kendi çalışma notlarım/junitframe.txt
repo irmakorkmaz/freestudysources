@@ -1,0 +1,33 @@
+FRAMEWORKS
+
+framework üzerine yazılım olşturabileceğimiz bi yapıdır.
+Oluşturacağımız proje için temel oluşturur.
+nasıl bir yapı oluşturmalıyım diye düşünmezsiniz.
+ÇERÇEVE
+Junit prpjesi oluşturmak için pom.xml e dependicies olarak eklememiz gerekir.
+(tabii ki Maven prpjesinde)
+1-Test metodlarını bağımsız olarak çaşıştırmak için notasyonla(annotatitons)sağlar-
+2-Main method kullanmayacağız.
+3-Expected result ve actual resulti karşılaştırarak test etmemizi ve sonucunu otomatik
+olarak almamızı sağlayan hazır assertion methodları barındırır ve anında feedback sağlar.
+4-Bize raporlar hazırlar.
+mvnrepositoriden uygun j uniti bulup pom.xmle eklemen gerekir.
+ 
+Junit annotations
+@Test
+@BeforeClass-public void setUp(){
+@AfterClass-public void tearDown(){
+@Before-public void setUp(){
+@After-public void tearDown(){
+@Ignore-o testin yapılmasını engeller belki ekleyecek bi şeyler vardır yarıda kalmıştır vs vs 
+
+
+
+
+junit assertionları
+assertionslar verify yapabilmemiz için kullanılır.
+1-Assert.assertTrue(koşul)-koşulun doğru olmasını istiyorsak
+2-Assert.assertFalse(koşul)-koşulun yanlış olmasını istiyorsak
+3-Assert.assertEqual(expected,actual)-2 değerin eşit olmasını bekliyorsak
+
+

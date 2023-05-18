@@ -1,0 +1,22 @@
+Ýliþkisel Veritabaný Yönetim Sistemleri
+Ýliþkisel veritabaný yönetim sistemlerinde veriler satýr ve sütunlarýnda oluþan tablolarda tutulur. Her sütunda ayný tür verilerin tutulmasý sebebiyle yüksek bir veri tutarlýlýðýna sahiptir.
+
+Aþaðýda popüler veritabaný yönetim sistemi yazýlýmlarýný görebilirsiniz.-rdbms
+ORACLE
+MYSQL
+MSSQLSERVER
+MONGODB
+IBMDB2
+INFORMIX
+POSTGRESQL
+
+
+-----veritabaný ile iletiþimi dbms üzerinde sql programlama dilini kullanarak yapýyoruz.
+
+
+imperative programmýng: emredici programlama
+declarative programmýng: beyan edici- sql declarative bir programlama dilidir.
+
+terminal arayüzü bu
+psql -U kullanici adi enter sonra þifre gir. dosya yolunu enviromenta eklersen psql komutunu direkt tanýr.
+ biz grafik arayüzü kullanacaðýz yani pgadmin4

@@ -1,0 +1,23 @@
+*	Performance testing is non-functional testing methods.
+*	System testing, Both b & c, Usability testing are functional testing methods.
+*	Failure is Deviation from expected result to actual result.
+*	Error Guessing testing is done to supplement rigorous testing.
+*	Capture and replay facilities are least likely to be used to User requirements.
+*	Number of binary decisions + 1 Cyclomatic complexity is used to calculate.	
+*	
+*	
+*	
+*	
+*	
+*	
+*	
+*	
+*	
+*	
+*	
+*	
+*	
+*	
+*	
+*	
+*	
